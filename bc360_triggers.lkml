@@ -6,6 +6,14 @@ datagroup: dg_bc360_clients {
   max_cache_age: "24 hours"
 }
 
+datagroup: dg_bc360_flat_arch {
+  sql_trigger:  SELECT
+                  last_modified_time last_modified
+                FROM `bc360-main.INFORMATION_SCHEMA.SCHEMATA`
+                WHERE schema_name = 'flat_arch' ;;
+  max_cache_age: "24 hours"
+}
+
 datagroup: dg_bc360_campaigns {
   sql_trigger:  SELECT
                   last_modified_time last_modified
