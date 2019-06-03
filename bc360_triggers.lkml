@@ -6,6 +6,14 @@ datagroup: dg_bc360_clients {
   max_cache_age: "24 hours"
 }
 
+datagroup: dg_bc360_arch_all {
+  sql_trigger:  SELECT
+                  MAX(last_modified_time) last_modified
+                FROM `bc360-main.INFORMATION_SCHEMA.SCHEMATA`
+                WHERE schema_name LIKE 'arch_%' ;;
+  max_cache_age: "24 hours"
+}
+
 datagroup: dg_bc360_flat_arch {
   sql_trigger:  SELECT
                   last_modified_time last_modified
@@ -18,7 +26,7 @@ datagroup: dg_bc360_campaigns {
   sql_trigger:  SELECT
                   last_modified_time last_modified
                 FROM `bc360-main.INFORMATION_SCHEMA.SCHEMATA`
-                WHERE schema_name = 'arch_campaign' ;;
+                WHERE schema_name = 'arch_campaigns' ;;
   max_cache_age: "24 hours"
 }
 
@@ -51,5 +59,14 @@ datagroup: dg_bc360_mx_marketing {
                   last_modified_time last_modified
                 FROM `bc360-main.INFORMATION_SCHEMA.SCHEMATA`
                 WHERE schema_name = 'mx_marketing' ;;
+  max_cache_age: "24 hours"
+}
+
+
+datagroup: dg_bc360_mx_flat {
+  sql_trigger:  SELECT
+                  last_modified_time last_modified
+                FROM `bc360-main.INFORMATION_SCHEMA.SCHEMATA`
+                WHERE schema_name = 'flat_mx' ;;
   max_cache_age: "24 hours"
 }
