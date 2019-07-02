@@ -71,3 +71,10 @@ datagroup: dg_bc360_mx_flat {
                 WHERE schema_name = 'flat_mx' ;;
   max_cache_age: "24 hours"
 }
+
+datagroup: dg_bc360_mx_analytics {
+  sql_trigger:  SELECT
+                    TIMESTAMP_MILLIS(last_modified_time) last_modified
+                  FROM `mx_analytics.__TABLES__` where table_id = 'events_media_live' ;;
+  max_cache_age: "24 hours"
+}
